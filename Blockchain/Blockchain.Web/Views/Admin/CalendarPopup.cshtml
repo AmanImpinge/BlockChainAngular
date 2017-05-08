@@ -1,0 +1,25 @@
+﻿<style>
+    .modal-dialog {
+     left:0;
+    }
+</style>
+<div class="modal-header">
+    <h3 class="modal-title">Activity Info!</h3>
+</div>
+<div class="modal-body">
+    <p>
+        Activity Name
+        <pre>{{ vm.event.title }}</pre>
+    </p>
+    <p>
+        Details:
+        <pre><b>Type: </b> {{ vm.event.activityType }}</pre>
+        <pre><b>Desc: </b>{{ vm.event.desc }}</pre>
+
+        <pre><b>Start: </b>{{ vm.event.startsAt }}</pre>
+        <pre><b>End: </b>{{ vm.event.endsAt }}</pre>
+    </p>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="$close()">OK</button>
+</div>

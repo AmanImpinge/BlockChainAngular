@@ -1,0 +1,112 @@
+﻿<div class="col-md-6 col-md-offset-3">
+    <h2>
+        <span ng-show="!vm.isEdit"> Create Activity</span>
+        <span ng-show="vm.isEdit"> Edit Activity</span>
+    </h2>
+    <form name="form" role="form">
+        <div class="form-group" ng-class="{ 'has-error': form.inputName.$dirty && form.inputName.$error.required }">
+            <label for="inputName">Name *</label>
+            <input type="text" name="inputName" id="inputName" class="form-control" ng-model="vm.activitylist.ActName" required />
+            <span ng-show="form.inputName.$dirty && form.inputName.$error.required" class="help-block">Name is required</span>
+        </div>
+
+
+        <div class="form-group">
+            <label for="inputDescription">Description *</label>
+            <input type="text" name="inputDescription" id="inputDescription" class="form-control" ng-model="vm.activitylist.ActDesc" required />
+        </div>
+
+
+        <div class="form-group">
+            <label for="inputImage">Image</label>
+            <input type="file" name="inputImage" id="inputImage" class="form-control" ng-model-instant
+                   onchange="angular.element(this).scope().previewFile()" />
+            <div>
+                <img class="thumb" id="imgActivity" src="{{vm.activitylist.Image}}" style="margin:5px;width:200px;" />
+            </div>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error': form.inputCountrty.$dirty && form.inputCountrty.$error.required }" ng-init="vm.getWorldsList()">
+            <label for="inputCountrty">World *</label>
+            <select id="dropdownWorld" name="dropdownWorld" ng-disabled="vm.isEdit" ng-model="vm.activitylist.ActWorldID" class="form-control" required>
+                <option value="">----Select----</option>
+                <option data-ng-repeat="t in vm.WorldList" value="{{t.Id}}">{{t.WorldName}}</option>
+            </select>
+            <span ng-show="form.inputCountrty.$dirty && form.inputCountrty.$error.required" class="help-block">Country is required</span>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error': form.dropdownEvent.$dirty && form.dropdownEvent.$error.required }" ng-init="vm.getEvents()">
+            <label for="dropdownEvent">Event *</label>
+            <select id="dropdownEvent" name="dropdownEvent" ng-model="vm.activitylist.EventId" class="form-control" required>
+                <option value="">----Select----</option>
+                <option data-ng-repeat="t in vm.Events" value="{{t.Id}}">{{t.EventName}}</option>
+            </select>
+            <span ng-show="form.dropdownEvent.$dirty && form.dropdownEvent.$error.required" class="help-block">Event is required</span>
+        </div>
+
+        <div class="form-group">
+            <label for="inputStartDateTime">Start DateTime *</label>
+            <input type="text" name="inputStartDateTime" id="inputStartDateTime" class="form-control" ng-model="vm.activitylist.FormattedActStartTime" required />
+        </div>
+
+        <div class="form-group">
+            <label for="inputEndDateTime">End DateTime *</label>
+            <input type="text" name="inputEndDateTime" id="inputEndDateTime" class="form-control" ng-model="vm.activitylist.FormattedActEndTime" required />
+        </div>
+
+        <div class="form-group">
+            <label for="inputAmountEarned">Amount earned for completion</label>
+            <input type="number" name="inputAmountEarned" id="inputAmountEarned" class="form-control" ng-model="vm.activitylist.ActCurrencyValue" />
+        </div>
+
+        <div class="form-group">
+            <label for="inputAddress">Type</label><br />
+            <input type="radio" name="ActivityType" id="ActivityTypeOneTime" ng-model="vm.activitylist.ActType" value="1" />One Time<br />
+            <input type="radio" name="ActivityType" id="ActivityTypeRecurring" ng-model="vm.activitylist.ActType" value="2" />Recurring
+        </div>
+
+        <div class="form-group">
+            <label for="inputMaximumPoints">Maximum number of points earned on recurring activities</label>
+            <input type="number" name="inputMaximumPoints" id="inputMaximumPoints" class="form-control" ng-model="vm.activitylist.ActMaxCount" />
+        </div>
+
+        <div class="form-group">
+            <label for="inputActCurrencyDelta">Activity Currency Delta</label>
+            <input type="number" name="inputActCurrencyDelta" id="inputActCurrencyDelta" class="form-control" ng-model="vm.activitylist.ActCurrencyDelta" />
+        </div>
+
+        <div class="form-group">
+            <label for="inputActExperienceDelta">Activity Experience Delta</label>
+            <input type="number" name="inputActExperienceDelta" id="inputActExperienceDelta" class="form-control" ng-model="vm.activitylist.ActExperienceDelta" />
+        </div>
+
+
+        <div class="form-group">
+            <label for="worldname">Debug</label>
+
+            <p>   <input type="checkbox" name="ActDebug" id="ActDebug" ng-model="vm.activitylist.ActDebug" /></p>
+        </div>
+
+        <div class="form-group">
+            <label for="inputLocation">Location</label>
+            <input type="text" name="inputLocation" id="inputLocation" class="form-control" ng-model="vm.activitylist.Location" />
+        </div>
+
+        <div class="form-actions">
+            <button ng-click="vm.saveActivity()" ng-show="!vm.isEdit" type="button" ng-disabled="form.$invalid || myApp.dataLoading" class="btn btn-primary">Submit</button>
+            <button ng-click="vm.saveActivity()" ng-show="vm.isEdit" type="button" class="btn btn-primary">Save Changes</button>
+
+            <a href="#Activity" class="btn btn-default">< Go Back</a>
+
+            <button ng-click="vm.copyActivity()" ng-show="vm.isEdit" type="button" ng-disabled="form.$invalid || myApp.dataLoading" class="btn btn-primary">Copy</button>
+        </div>
+        <div class="form-actions">
+            <span style="color:red">
+                {{vm.errorMessage}}
+            </span>
+            <span style="color:green">
+                {{vm.successMessage}}
+            </span>
+        </div>
+    </form>
+</div>

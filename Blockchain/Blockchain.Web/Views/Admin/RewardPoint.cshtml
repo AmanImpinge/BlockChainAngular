@@ -1,0 +1,36 @@
+﻿
+<div class="row form-group">
+    <h3>
+        List Reward Points
+        <a class="btn btn-primary" href="#CreateRewardPoint">+Add New</a>
+    </h3>
+</div>
+<div class="row form-group">
+    <div class="col-md-12">
+        <table class="table table-bordered" ng-init="vm.getRewardPointList()">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Rule</th>
+                    <th>Total Allowed Pts</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="rewardpoint in vm.rewardpointDataForTable">
+                    <td>{{rewardpoint.SNo}}</td>
+                    <td>{{rewardpoint.Name}}</td>
+                    <td>{{rewardpoint.Description}}</td>
+                    <td>{{rewardpoint.Rule}}</td>
+                    <td>{{rewardpoint.TotalAllowedPts}}</td>
+                </tr>
+            </tbody>
+            <tfoot ng-show="vm.rewardpointDataForTable.length==0">
+                <tr>
+                    <td colspan="5" class="text-center">No Record found.</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

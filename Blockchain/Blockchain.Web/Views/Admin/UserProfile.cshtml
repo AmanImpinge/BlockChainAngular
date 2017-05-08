@@ -1,0 +1,76 @@
+﻿<div class="col-md-6 col-md-offset-3">
+    <h3>
+
+        <span> View User Profile</span>
+    </h3>
+
+    <form name="form" role="form">
+        <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+            <label for="username">Select User</label>
+
+            <select id="dropdownUserName" name="dropdownUserName" ng-model="vm.userProfile.UserId" class="form-control" ng-change="vm.getBalanceAndTransactions()" required>
+                <option value="">----Select----</option>
+                <option data-ng-repeat="t in vm.UserList" value="{{t.AUID}}">{{t.AUFirstName}} {{t.AULastName}}</option>
+            </select>
+
+            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
+        </div>
+
+
+        <div class="form-group">
+            <label for="worldname">Balance</label>
+            <input type="text" name="userBalance" ng-disabled="!vm.enableAddBalance" id="userBalance" class="form-control" ng-model="vm.userProfile.Balance" />
+        </div>
+        <div class="form-actions">
+            <input ng-show="vm.enableAddBalance" type="button" ng-click="vm.saveAmount()" class="btn btn-primary" value="Save" />
+            <input ng-show="vm.enableAddBalance" type="button" ng-click="vm.showAddBalance()" class="btn btn-default" value="Cancel" />
+            <input ng-show="!vm.enableAddBalance" type="button" ng-click="vm.showAddBalance()" class="btn btn-primary" value="Add Balance" />
+            <span style="color:red">
+                {{vm.errorIssueMessage}}
+            </span>
+            <span style="color:green">
+                {{vm.successIssueMessage}}
+            </span>
+        </div>
+
+
+        <div class="row form-group">
+            <h3>
+                Transactions List
+
+            </h3>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-12">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>WorldName</th>
+                            <th>Recipient Name</th>
+                            <th>Trans Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="transaction in vm.userTransactions">
+                            <td>{{transaction.TransFormattedDate}}</td>
+                            <td>{{transaction.TransAmount}}</td>
+                            <td>{{transaction.WorldName}}</td>
+                            <td>{{transaction.RecipientName}}</td>
+                            <td>{{transaction.TransStatus}}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot ng-show="vm.userTransactions.length==0">
+                        <tr>
+                            <td colspan="5" class="text-center">No Record found.</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+
+    </form>
+</div>
+

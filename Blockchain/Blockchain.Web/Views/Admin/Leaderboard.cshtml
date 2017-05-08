@@ -1,0 +1,43 @@
+﻿<div class="row form-group">
+    <h3>
+        Leaderboard
+        @*<a class="btn btn-primary" href="#CreateLeaderboard">+Add New</a>*@
+    </h3>
+</div>
+<div class="row form-group">
+    <div class="col-md-12">
+
+
+        <div class="form-group" ng-class="{ 'has-error': form.dropdownEvent.$dirty && form.dropdownEvent.$error.required }" ng-init="vm.getEvents()">
+            <label for="dropdownEvent">Event</label>
+            <select id="dropdownEvent" name="dropdownEvent" ng-model="vm.leaderboard.EventId" class="form-control" required ng-change="vm.getleaderboardListByEventId()">
+                <option value="">----Select----</option>
+                <option data-ng-repeat="t in vm.Events" value="{{t.Id}}">{{t.EventName}}</option>
+            </select>
+        </div>
+        @*ng-init="vm.getleaderboardList()"*@
+        <table class="table table-bordered" >
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Name</th>
+                    <th>Pic</th>
+                    <th>Point earned</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="Leaderboard in vm.leaderboardDataForTable">
+                    <td>{{Leaderboard.Rank}}</td>
+                    <td>{{Leaderboard.UserName}}</td>
+                    <td><img class="thumb" src="{{Leaderboard.ProfilePicMimeType}}" style="width:50px; height:30px;" /></td>
+                    <td>{{Leaderboard.TotalPoints}}</td>
+                </tr>
+            </tbody>
+            <tfoot ng-show="vm.leaderboardDataForTable.length==0">
+                <tr>
+                    <td colspan="4" class="text-center">No Record found.</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,81 @@
+﻿
+<div class="row form-group">
+    <h3>
+        Transactions History
+        @*<a class="btn btn-primary" href="#CreateRewardPoint">+Add New</a>*@
+    </h3>
+</div>
+<div class="row form-group">
+    <div class="col-md-12">
+
+        <div class="col-md-4">
+
+            <div class="form-group" ng-class="{ 'has-error': form.inputCountrty.$dirty && form.inputCountrty.$error.required }" ng-init="vm.getWorldsList()">
+                <label for="inputCountrty">World *</label>
+                <select id="dropdownWorld" name="dropdownWorld" ng-model="search.World" class="form-control" required>
+                    <option value="">----Select----</option>
+                    <option data-ng-repeat="t in vm.WorldList" value="{{t.WorldName}}">{{t.WorldName}}</option>
+                </select>
+
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+                <label for="Vendorname">Transaction Status</label>
+
+                <select id="dropdownTransType" name="dropdownTransType" ng-model="search.Type" class="form-control">
+                    <option value="">----Select----</option>
+                    <option value="Transfer">Transfer</option>
+                    <option value="Purchase">Purchase</option>
+                    <option value="Badge">Badge</option>
+                </select>
+            </div>
+            </div>
+        <div class="col-md-4">
+            <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+                <label for="Vendorname">Select Vendor</label>
+                @*ng-change="vm.getTransactionListByVendorId()"*@
+                <select id="dropdownVendorname" name="dropdownVendorname" ng-model="search.Vendor" class="form-control"  required>
+                    <option value="">----Select----</option>
+                    <option data-ng-repeat="t in vm.VendorList" value="{{t.AUFirstName}} {{t.AULastName}}">{{t.AUFirstName}} {{t.AULastName}}</option>
+                </select>
+
+                @*<span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>*@
+            </div>
+            </div>
+        </div>
+        
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Transaction Id</th>
+                        <th>Type</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>WorldName</th>
+                        <th>Recipient Name</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="Transactions in vm.Transactions |  filter:{WorldName: search.World, RecipientName:search.Vendor, Type: search.Type}">
+                        <td>{{Transactions.TransID}}</td>
+                        <td>{{Transactions.Type}}</td>
+                        <td>{{Transactions.TransFormattedDate}}</td>
+                        <td>{{Transactions.TransAmount}}</td>
+                        <td>{{Transactions.WorldName}}</td>
+                        <td>{{Transactions.RecipientName}}</td>
+                        <td>{{Transactions.TransStatus}}</td>
+                        <td><a href="#">View</a></td>
+                    </tr>
+                </tbody>
+                <tfoot ng-show="vm.Transactions.length==0">
+                    <tr>
+                        <td colspan="8" class="text-center">No Record found.</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+</div>

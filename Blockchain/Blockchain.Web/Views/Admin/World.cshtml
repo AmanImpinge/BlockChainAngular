@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "World";
+    Layout = null;
+}
+
+<div class="row form-group">
+    <h3>
+        Worlds
+        <a class="btn btn-primary" href="#CreateWorld">+Add New</a>
+    </h3>
+</div>
+<div class="row form-group">
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Debug</th>
+                    <th>Created By</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="world in vm.worlds">
+                    <td>{{world.Id}}</td>
+                    <td>{{world.WorldName}}</td>
+                    <td>{{world.Description}}</td>
+                    <td>
+                        <input type="checkbox" readonly ng-show="world.WorldDebugFlag" checked disabled="disabled" />
+                        <input type="checkbox" readonly ng-show="!world.WorldDebugFlag" disabled="disabled" />
+                    </td>
+                    <td>{{world.CreatedBy}}</td>
+                    <td><a class="btn btn-primary" href="#EditWorld/{{world.Id}}">Edit</a></td>
+                </tr>
+            </tbody>
+            <tfoot ng-show="vm.worlds.length==0">
+                <tr>
+                    <td colspan="4" class="text-center">No Record found.</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

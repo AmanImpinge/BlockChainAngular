@@ -1,0 +1,53 @@
+﻿
+<div class="col-md-6 col-md-offset-3">
+    <h3>
+        <span > Create Reward Point</span>
+        @*<span ng-show="vm.isEdit"> Edit World</span>ng-show="!vm.isEdit"*@
+    </h3>
+
+    <form name="form" ng-submit="vm.saveRewardPoint()" role="form">
+
+        <div class="form-group" ng-class="{ 'has-error': form.rewardName.$dirty && form.rewardName.$error.required }">
+            <label for="rewardName">Name</label>
+            <input type="text" name="rewardName" id="rewardName" class="form-control" ng-model="vm.Reward.rewardName" required />
+            <span ng-show="form.rewardName.$dirty && form.rewardName.$error.required" class="help-block">Name is required</span>
+        </div>
+
+
+        <div class="form-group">
+            <label for="rewardDescription">Description</label>
+            <input type="text" name="rewardDescription" id="rewardDescription" class="form-control" ng-model="vm.Reward.rewardDescription" />
+        </div>
+
+        <div class="form-group">
+            <label for="rewardDescription">Rules</label>
+            <input type="checkbox" /> Short Term
+            <input type="checkbox" /> Long Term
+        </div>
+
+
+        <div class="form-group">
+            <label for="rewardTotalPoints">Total number of points allowed</label>
+            <input type="text" name="rewardTotalPoints" id="rewardTotalPoints" class="form-control" ng-model="vm.Reward.rewardTotalPoints" />
+        </div>
+
+
+        <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid || myApp.dataLoading" class="btn btn-primary">
+
+                <span> Save</span>
+                @*<span ng-show="!vm.isEdit"> Save</span>
+                <span ng-show="vm.isEdit"> Save Changes</span>*@
+            </button>
+
+            <a href="#RewardPoint" class="btn btn-default">< Go Back</a>
+
+            <img ng-if="myApp.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        </div>
+        <div class="form-actions">
+            <span style="color:red">
+                {{vm.errorMessage}}
+            </span>
+        </div>
+    </form>
+</div>

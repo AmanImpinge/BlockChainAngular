@@ -1,0 +1,56 @@
+﻿
+<div class="content" ng-init="vm.getBadgeList()">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 title_block">
+        <div class="direct-panel">
+            <p class="page-name">Badges</p>
+            <a class="btn btn-primary btn_right" href="#CreateBadge">+Add New</a>
+            <div class="col-lg-2 pull-right">
+                <div class="has-feedback">
+                    @*<input placeholder="Search" type="text" class="form-control" ng-model="searchText">
+                        <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Badge Id</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Type</th>
+                        <th>Modifier</th>
+                        <th>Debug</th>
+                        <th>Image</th>
+                        <th>World</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="badge in vm.badgeList">
+                        <td>{{badge.BadgeID}}</td>
+                        <td>{{badge.BadgeName}}</td>
+                        <td>{{badge.BadgeDesc}}</td>
+                        <td>{{badge.BadgeTypeView}}</td>
+                        <td>{{badge.BadgeModifierView}}</td>
+                        <td>
+                            <input type="checkbox" readonly ng-show="badge.BadgeDebug" checked disabled="disabled" />
+                            <input type="checkbox" readonly ng-show="!badge.BadgeDebug" disabled="disabled" />
+                        </td>
+                        <td><img class="thumb" src="{{badge.ImageMimetype}},{{badge.Image}}" style="width:50px; height:30px;" /></td>
+                        <td>{{badge.BadgeWorldID}}</td>
+                        <td><a class="btn btn-primary" href="#EditBadge/{{badge.BadgeID}}">Edit</a> <a class="btn btn-primary" ng-click="vm.deleteBadge(badge)">Delete</a></td>
+                    </tr>
+                </tbody>
+                <tfoot ng-show="vm.badgeList.length==0">
+                    <tr>
+                        <td colspan="9" class="text-center">No Record found.</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

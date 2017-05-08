@@ -1,0 +1,41 @@
+﻿<div class="content">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 title_block">
+            <div class="direct-panel">
+                <span class="page-name" ng-show="!vm.isEdit"> Create FAQ</span>
+                <span class="page-name" ng-show="vm.isEdit"> Edit FAQ</span>
+            </div>
+        </div>
+        <form name="form" ng-submit="vm.createFAQ()" role="form">
+            <div class="form-group" ng-class="{ 'has-error': form.inputCountrty.$dirty && form.inputCountrty.$error.required }" ng-init="vm.worldList()">
+                <label for="dropdownWorld">World *</label>
+                <select disabled id="dropdownWorld" name="dropdownWorld" ng-model="vm.FAQ.WorldId" class="form-control" required>
+                    <option value="">----Select----</option>
+                    <option data-ng-repeat="t in vm.Worlds" value="{{t.Id}}">{{t.WorldName}}</option>
+                </select>
+                <span ng-show="form.dropdownWorld.$dirty && form.dropdownWorld.$error.required" class="help-block">World is required</span>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error': form.HTML.$dirty && form.HTML.$error.required }">
+                <label for="HTML">HTML</label>
+                <textarea cols="100" id="FaqEditor" name="FaqEditor" rows="50" ng-init="vm.initEditor();" required></textarea>
+                <span ng-show="form.HTML.$dirty && form.HTML.$error.required" class="help-block">HTML is required</span>
+            </div>
+            <div class="form-group">
+                <label for="Debug">Debug</label>
+                <p>   <input type="checkbox" name="Debug" id="Debug" ng-model="vm.FAQ.Debug" /></p>
+            </div>
+            <div class="form-actions">
+                <button type="submit" ng-disabled="form.$invalid || myApp.dataLoading" class="btn btn-primary">
+                    <span ng-show="!vm.isEdit"> Save</span>
+                    <span ng-show="vm.isEdit"> Save Changes</span>
+                </button>
+                <a href="#/FAQ" class="btn btn-default">< Go Back</a>
+            </div>
+            <div class="form-actions">
+                <span style="color:red">
+                    {{vm.errorMessage}}
+                </span>
+            </div>
+        </form>
+    </div>
+</div>

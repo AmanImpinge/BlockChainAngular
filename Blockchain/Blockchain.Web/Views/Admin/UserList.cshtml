@@ -1,0 +1,77 @@
+﻿@{
+    ViewBag.Title = "User List";
+    Layout = null;
+}
+<style>
+    #scrollable-area {
+        height: 400px;
+        overflow-y: scroll;
+    }
+
+        #scrollable-area .table thead > tr > th, #scrollable-area .table tbody > tr > th, #scrollable-area .table tfoot > tr > th, #scrollable-area .table thead > tr > td, #scrollable-area .table tbody > tr > td, #scrollable-area .table tfoot > tr > td {
+            word-wrap: break-word;
+            vertical-align: middle;
+            text-align: center;
+        }
+</style>
+<div class="row form-group">
+    <div class="col-md-12">
+        <h2>
+            User List
+            <a class="btn btn-primary" href="#CreateUser">+Add New</a>
+        </h2>
+        <p class="col-md-2 pull-right">
+            <input ng-model="searchText" placeholder="Search" id="search" class="form-control">
+        </p>
+    </div>
+</div>
+<div class="row form-group" ng-init="vm.GetUserList()">
+    <div class="col-md-12 table-responsive">
+
+        <div id="scrollable-area" class="table-responsive">
+
+            <table class="table table-bordered">
+                <tr>
+                    <th valign="middle">AUID</th>
+                    <th valign="middle">First Name</th>
+                    <th valign="middle">Last Name</th>
+                    <th valign="middle">Nick Name</th>
+                    <th valign="middle">Email</th>
+                    <th valign="middle">User Class</th>
+                    <th valign="middle">World</th>
+                    <th valign="middle">Status</th>
+                    <th valign="middle">Option Flags</th>
+                    <th valign="middle">Priv Level</th>
+                    <th valign="middle">Debug Flag</th>
+                    <th valign="middle">Actions</th>
+                </tr>
+                <tr ng-repeat="x in vm.UserList | filter:searchText">
+                    <td>{{x.AUID}}</td>
+                    <td>{{x.AUFirstName}}</td>
+                    <td>{{x.AULastName}}</td>
+                    <th>{{x.AUNickName}}</th>
+                    <td>{{x.AUUserEmail}}</td>
+                    <td>{{x.AUUserClass}}</td>
+                    <td>{{x.AUWorld}}</td>
+                    <td>{{x.AUAcctStatus}}</td>
+                    <td>{{x.AUOptionFlags}}</td>
+                    <td>{{x.AUPrivLevel}}</td>
+                    <td>
+                        <input type="checkbox" ng-show="x.AUDebugFlag==1" checked readonly />
+                        <input type="checkbox" ng-show="x.AUDebugFlag==2" readonly />
+                    </td>
+                    <td>
+                        <a href="#EditUser/{{x.AUID}}" title="Edit" class=""><span class="glyphicon glyphicon-pencil"></span></a>
+                        @*<a href="#DeleteUser/{{x.AUID}}" class="btn btn-danger">Delete</a>*@
+
+                        <a href="javascript:void(0);" class="" title="Delete" ng-click="vm.DeleteUser(x)"><span class="glyphicon glyphicon-trash"></span></a>
+
+                        <a ng-show="x.AUAcctStatusId==0" href="javascript:void(0);" class="" title="Activate" ng-click="vm.changeUserStatus(x,1)"><span class="glyphicon glyphicon-ok"></span></a>
+                        <a ng-show="x.AUAcctStatusId==1" href="javascript:void(0);" class="" title="DeActivate" ng-click="vm.changeUserStatus(x,0)"><span class="glyphicon glyphicon-remove"></span></a>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+﻿<div class="content" ng-init="vm.getItemList()">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 title_block">
+        <div class="direct-panel">
+            <p class="page-name">Items</p>
+            <a class="btn btn-primary btn_right" href="#CreateItem">+Add New</a>
+            <div class="col-lg-2 pull-right">
+                <div class="has-feedback">
+                    @*<input placeholder="Search" type="text" class="form-control" ng-model="searchText">
+                        <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Item Id</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>World</th>
+                        <th>Vendor</th>
+                        <th>Qty Limit</th>
+                        <th>Cost</th>
+                        <th>Debug</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in vm.itemsList">
+                        <td>{{item.ItemID}}</td>
+                        <td>{{item.ItemName}}</td>
+                        <td>{{item.ItemDesc}}</td>
+                        <td>{{item.WorldName}}</td>
+                        <td>{{item.UserName}}</td>
+                        <td>{{item.ItemQtyLimit}}</td>
+                        <td>{{item.ItemCost}}</td>
+                        <td>
+                            <input type="checkbox" readonly ng-show="item.DebugFlag" checked disabled="disabled" />
+                            <input type="checkbox" readonly ng-show="!item.DebugFlag" disabled="disabled" />
+                        </td>
+                        <td>{{item.Status}}</td>
+                        <td><a class="btn btn-primary" href="#EditItem/{{item.ItemID}}">Edit</a> <a class="btn btn-primary" ng-click="vm.deleteItem(item)">Delete</a></td>
+                    </tr>
+                </tbody>
+                <tfoot ng-show="vm.itemsList.length==0">
+                    <tr>
+                        <td colspan="10" class="text-center">No Record found.</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

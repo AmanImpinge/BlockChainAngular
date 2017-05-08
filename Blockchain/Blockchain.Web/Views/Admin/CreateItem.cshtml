@@ -1,0 +1,107 @@
+﻿<div class="content">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 title_block">
+            <div class="direct-panel">
+                <span class="page-name" ng-show="!vm.isEdit"> Create Item</span>
+                <span class="page-name" ng-show="vm.isEdit"> Edit Item</span>
+            </div>
+        </div>
+
+        <form name="form" ng-submit="vm.createItem()" role="form">
+            <div class="form-group" ng-class="{ 'has-error': form.ItemName.$dirty && form.ItemName.$error.required }">
+                <label for="ItemName">Item Name</label>
+                <input type="text" name="ItemName" id="ItemName" class="form-control" ng-model="vm.item.ItemName" required />
+                <span ng-show="form.itemName.$dirty && form.itemName.$error.required" class="help-block">Name is required</span>
+            </div>
+            <div class="form-group">
+                <label for="itemDesc">Description</label>
+                <input type="text" name="itemDesc" id="itemDesc" class="form-control" ng-model="vm.item.ItemDesc" />
+            </div>
+
+            <div class="form-group">
+                <label for="inputImage">Image</label>
+                <input type="file" name="inputImage" id="inputImage" class="form-control" ng-model-instant
+                       onchange="angular.element(this).scope().previewFile()" />
+                <div>
+                    <img class="thumb" id="imgItem" src="{{vm.item.Image}}" style="margin:5px;width:200px;" />
+                </div>
+            </div>
+
+
+            <div class="form-group" ng-class="{ 'has-error': form.inputUser.$dirty && form.inputUser.$error.required }" ng-init="vm.getVendorsList()">
+                <label for="inputUser">User *</label>
+                <select id="dropdownUser" name="dropdownUser" ng-model="vm.item.UserId" class="form-control" required>
+                    <option value="">----Select----</option>
+                    <option data-ng-repeat="t in vm.VendorList" value="{{t.AUID}}">{{t.AUFirstName}} {{t.AULastName}}</option>
+                </select>
+                <span ng-show="form.inputUser.$dirty && form.inputUser.$error.required" class="help-block">User is required</span>
+            </div>
+
+            @*<div class="form-group" ng-class="{ 'has-error': form.inputCountrty.$dirty && form.inputCountrty.$error.required }" ng-init="vm.getWorldsList()">
+                <label for="inputCountrty">World *</label>
+                <select id="dropdownWorld" name="dropdownWorld" ng-model="vm.item.ItemWorldID" class="form-control" required>
+                    <option value="">----Select----</option>
+                    <option data-ng-repeat="t in vm.WorldList" value="{{t.Id}}">{{t.WorldName}}</option>
+                </select>
+                <span ng-show="form.inputCountrty.$dirty && form.inputCountrty.$error.required" class="help-block">Country is required</span>
+            </div>*@
+
+
+            <div class="form-group">
+                <label for="itemQtyLimit">Quantity Limit</label>
+                <input type="number" name="itemQtyLimit" id="itemQtyLimit" class="form-control" ng-model="vm.item.ItemQtyLimit" />
+            </div>
+
+
+            <div class="form-group">
+                <label for="itemCost">Item Cost</label>
+                <input type="number" name="itemCost" id="itemCost" class="form-control" ng-model="vm.item.ItemCost" />
+            </div>
+
+
+            <div class="form-group" ng-class="{ 'has-error': form.dropdownDeliveryMode.$dirty && form.dropdownDeliveryMode.$error.required }">
+                <label for="dropdownDeliveryMode">Delivery Mode *</label>
+                <select id="dropdownDeliveryMode" name="dropdownDeliveryMode" ng-model="vm.item.ItemDeliveryMode" class="form-control" required>
+                    <option value="">----Select----</option>
+                    <option value="0">Undefined</option>
+                    <option value="1">pickup in physical store</option>
+                    <option value="2">ship to purchaser</option>
+                    <option value="3">electronic delivery</option>
+                    <option value="4">N/A (for charitable contributions, for example)</option>
+                </select>
+                <span ng-show="form.inputUserrole.$dirty && form.inputUserrole.$error.required" class="help-block">Delivery mode is required</span>
+            </div>
+
+
+            <div class="form-group" ng-class="{ 'has-error': form.dropdownCategory.$dirty && form.dropdownCategory.$error.required }">
+                <label for="dropdownCategory">Category *</label>
+                <select id="dropdownCategory" name="dropdownCategory" ng-model="vm.item.ItemCategory" class="form-control" required>
+                    <option value="">----Select----</option>
+                    <option value="0">Undefined</option>
+                    <option value="1">Physical item</option>
+                    <option value="2">Virtual item</option>
+                    <option value="3">Charitable Contribution</option>
+                </select>
+                <span ng-show="form.dropdownCategory.$dirty && form.dropdownCategory.$error.required" class="help-block">Category is required</span>
+            </div>
+
+            <div class="form-group">
+                <label for="worldname">Debug</label>
+                <p>   <input type="checkbox" name="itemDebugFlag" id="itemDebugFlag" ng-model="vm.item.isDebug" /></p>
+            </div>
+            <div class="form-actions">
+                <button type="submit" ng-disabled="form.$invalid || myApp.dataLoading" class="btn btn-primary">
+                    <span ng-show="!vm.isEdit"> Save</span>
+                    <span ng-show="vm.isEdit"> Save Changes</span>
+                </button>
+                <a href="#/Item" class="btn btn-default">< Go Back</a>
+                <img ng-if="myApp.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            </div>
+            <div class="form-actions">
+                <span style="color:red">
+                    {{vm.errorMessage}}
+                </span>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,75 @@
+﻿
+<div class="content">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 title_block">
+            <div class="direct-panel">
+                <span class="page-name" ng-show="!vm.isEdit"> Create Badge</span>
+                <span class="page-name" ng-show="vm.isEdit"> Edit Badge</span>
+            </div>
+        </div>
+
+        <form name="form" ng-submit="vm.createBadge()" role="form">
+            <div class="form-group" ng-class="{ 'has-error': form.BadgeName.$dirty && form.BadgeName.$error.required }">
+                <label for="BadgeName">Badge Name</label>
+                <input type="text" name="BadgeName" id="BadgeName" class="form-control" ng-model="vm.badge.BadgeName" required />
+                <span ng-show="form.badgeName.$dirty && form.badgeName.$error.required" class="help-block">Name is required</span>
+            </div>
+            <div class="form-group">
+                <label for="badgeDesc">Description</label>
+                <input type="text" name="badgeDesc" id="badgeDesc" class="form-control" ng-model="vm.badge.BadgeDesc" />
+            </div>
+
+            <div class="form-group">
+                <label for="inputImage">Image</label>
+                <input type="file" name="inputImage" id="inputImage" class="form-control" ng-model-instant
+                       onchange="angular.element(this).scope().previewFile()" />
+                <div>
+
+                    <img class="thumb" id="imgBadge" src="{{vm.badge.Image}}" style="margin:5px;width:200px;" />
+                </div>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error': form.inputCountrty.$dirty && form.inputCountrty.$error.required }" ng-init="vm.getWorldsList()">
+                <label for="inputCountrty">World *</label>
+                <select id="dropdownWorld" name="dropdownWorld" ng-model="vm.badge.BadgeWorldID" class="form-control" required>
+                    <option value="">----Select----</option>
+                    <option data-ng-repeat="t in vm.WorldList" value="{{t.Id}}">{{t.WorldName}}</option>
+                </select>
+                <span ng-show="form.inputCountrty.$dirty && form.inputCountrty.$error.required" class="help-block">Country is required</span>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error': form.dropdownBadgeType.$dirty && form.dropdownBadgeType.$error.required }">
+                <label for="dropdownBadgeType">Badge Type *</label>
+                <select id="dropdownBadgeType" name="dropdownBadgeType" ng-model="vm.badge.BadgeType" class="form-control" required>
+                    <option value="">----Select----</option>
+                    <option value="0">Undefined</option>
+                    <option value="1">I Am Helpful</option>
+                </select>
+                <span ng-show="form.dropdownBadgeType.$dirty && form.dropdownBadgeType.$error.required" class="help-block">Type is required</span>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error': form.dropdownBadgeModifier.$dirty && form.dropdownBadgeModifier.$error.required }">
+                <label for="dropdownBadgeModifier">Badge Modifier *</label>
+                <select id="dropdownBadgeModifier" name="dropdownBadgeModifier" ng-model="vm.badge.BadgeModifier" class="form-control" required>
+                    <option value="">----Select----</option>
+                    <option value="0">Undefined</option>
+                </select>
+                <span ng-show="form.dropdownBadgeModifier.$dirty && form.dropdownBadgeModifier.$error.required" class="help-block">Modifier is required</span>
+            </div>
+            <div class="form-group">
+                <label for="BadgeDebug">Debug</label>
+                <p>   <input type="checkbox" name="BadgeDebug" id="BadgeDebug" ng-model="vm.badge.isDebug" /></p>
+            </div>
+            <div class="form-actions">
+                <button type="submit" ng-disabled="form.$invalid || myApp.dataLoading" class="btn btn-primary">
+                    <span ng-show="!vm.isEdit"> Save</span>
+                    <span ng-show="vm.isEdit"> Save Changes</span>
+                </button>
+                <a href="#/Badge" class="btn btn-default">< Go Back</a>
+                <img ng-if="myApp.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            </div>
+            <div class="form-actions">
+                <span style="color:red">
+                    {{vm.errorMessage}}
+                </span>
+            </div>
+        </form>
+    </div>
+</div>

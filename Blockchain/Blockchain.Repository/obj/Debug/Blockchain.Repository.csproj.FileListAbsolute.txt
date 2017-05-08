@@ -1,0 +1,17 @@
+D:\Official\Projects\Rico\blockchain\Code\Blockchain\Blockchain.Repository\bin\Debug\Blockchain.Repository.dll.config
+D:\Official\Projects\Rico\blockchain\Code\Blockchain\Blockchain.Repository\bin\Debug\Blockchain.Repository.dll
+D:\Official\Projects\Rico\blockchain\Code\Blockchain\Blockchain.Repository\bin\Debug\Blockchain.Repository.pdb
+D:\Official\Projects\Rico\blockchain\Code\Blockchain\Blockchain.Repository\bin\Debug\Blockchain.Core.dll
+D:\Official\Projects\Rico\blockchain\Code\Blockchain\Blockchain.Repository\bin\Debug\EntityFramework.dll
+D:\Official\Projects\Rico\blockchain\Code\Blockchain\Blockchain.Repository\bin\Debug\EntityFramework.SqlServer.dll
+D:\Official\Projects\Rico\blockchain\Code\Blockchain\Blockchain.Repository\bin\Debug\Gma.QrCodeNet.Encoding.dll
+D:\Official\Projects\Rico\blockchain\Code\Blockchain\Blockchain.Repository\bin\Debug\Newtonsoft.Json.dll
+D:\Official\Projects\Rico\blockchain\Code\Blockchain\Blockchain.Repository\bin\Debug\Blockchain.Core.pdb
+D:\Official\Projects\Rico\blockchain\Code\Blockchain\Blockchain.Repository\bin\Debug\EntityFramework.xml
+D:\Official\Projects\Rico\blockchain\Code\Blockchain\Blockchain.Repository\bin\Debug\EntityFramework.SqlServer.xml
+D:\Official\Projects\Rico\blockchain\Code\Blockchain\Blockchain.Repository\bin\Debug\Gma.QrCodeNet.Encoding.pdb
+D:\Official\Projects\Rico\blockchain\Code\Blockchain\Blockchain.Repository\bin\Debug\Gma.QrCodeNet.Encoding.xml
+D:\Official\Projects\Rico\blockchain\Code\Blockchain\Blockchain.Repository\bin\Debug\Newtonsoft.Json.xml
+D:\Official\Projects\Rico\blockchain\Code\Blockchain\Blockchain.Repository\obj\Debug\Blockchain.Repository.csprojResolveAssemblyReference.cache
+D:\Official\Projects\Rico\blockchain\Code\Blockchain\Blockchain.Repository\obj\Debug\Blockchain.Repository.dll
+D:\Official\Projects\Rico\blockchain\Code\Blockchain\Blockchain.Repository\obj\Debug\Blockchain.Repository.pdb

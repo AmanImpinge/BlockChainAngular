@@ -1,0 +1,141 @@
+﻿<div class="col-md-6 col-md-offset-3">
+    <h2>
+        <span ng-show="!vm.isEdit"> Create User</span>
+        <span ng-show="vm.isEdit"> Edit User</span>
+    </h2>
+    <form name="form" role="form">
+        <div class="form-group" ng-class="{ 'has-error': form.inputFirstname.$dirty && form.inputFirstname.$error.required }">
+            <label for="inputFirstname">First Name *</label>
+            <input type="text" name="inputFirstname" id="inputFirstname" class="form-control" ng-model="vm.register.FirstName" required />
+            <span ng-show="form.inputFirstname.$dirty && form.inputFirstname.$error.required" class="help-block">Firstname is required</span>
+        </div>
+        <div class="form-group">
+            <label for="username">Last Name</label>
+            <input type="text" name="inputLastName" id="inputLastName" class="form-control" ng-model="vm.register.LastName" />
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error': form.inputEmail.$dirty && form.inputEmail.$error.required }">
+            <label for="username">Email Address *</label>
+            <input type="text" name="inputEmail" id="inputEmail" class="form-control" ng-model="vm.register.Email" required />
+            <span ng-show="form.inputEmail.$dirty && form.inputEmail.$error.required" class="help-block">Lastname is required</span>
+        </div>
+
+        <div ng-show="!vm.isEdit">
+            <div class="form-group" ng-class="{ 'has-error': form.inputPassword.$dirty && form.inputPassword.$error.required }">
+                <label for="inputPassword">Password *</label>
+                <input type="password" name="inputPassword" id="inputPassword" class="form-control" ng-model="vm.register.Password" required />
+                <span ng-show="form.inputPassword.$dirty && form.inputPassword.$error.required" class="help-block">Password is required</span>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error': form.inputConfirmPassword.$dirty && form.inputConfirmPassword.$error.required }">
+                <label for="inputConfirmPassword">Confirm Password *</label>
+                <input type="password" name="inputConfirmPassword" id="inputConfirmPassword" class="form-control" ng-model="vm.register.ConfirmPassword" required />
+                <span ng-show="form.inputConfirmPassword.$dirty && form.inputConfirmPassword.$error.required" class="help-block">Confirm Password is required</span>
+            </div>
+        </div>
+        <div ng-show="vm.isEdit">
+            <div class="form-group" ng-class="{ 'has-error': form.inputPassword.$dirty && form.inputPassword.$error.required }">
+                <label for="inputPassword">Password</label>
+                <div class="col-md-12">
+                    <button type="button" ng-hide="vm.isChangePwd" ng-click="vm.showChangePwd()" class="btn btn-danger">Change Passwoord</button>
+                </div>
+            </div>
+
+            <div class="form-group" ng-show="vm.isChangePwd" style="border:1px solid grey;padding:15px;">
+                <div class="row form-group">
+                    <label class="col-md-5">Old Password</label>
+                    <div class="col-md-7">
+                        <input type="password" name="OldPassword" class="form-control" ng-model="vm.changePwd.OldPassword" />
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label class="col-md-5">New Password</label>
+                    <div class="col-md-7">
+                        <input type="password" name="OldPassword" class="form-control" ng-model="vm.changePwd.NewPassword" />
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label class="col-md-5">Confirm New Password</label>
+                    <div class="col-md-7">
+                        <input type="password" name="OldPassword" class="form-control" ng-model="vm.changePwd.ConfirmNewPassword" />
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-md-5">&nbsp;</label>
+                    <div class="col-md-7">
+                        <input type="button" class="btn btn-danger" ng-click="vm.changePassword()" value="Change" />
+                        <input type="button" ng-click="vm.showChangePwd()" class="btn btn-default" value="Cancel" />
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <span class="col-md-12" style="color:red">{{vm.changePwdError}}</span>
+                    <span class="col-md-12" style="color:green">{{vm.changePwdSuccess}}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error': form.inputUserrole.$dirty && form.inputUserrole.$error.required }">
+            <label for="inputUserrole">User Role *</label>
+            <select id="dropdownUserRole" name="dropdownUserRole" ng-model="vm.register.AUUserClass" class="form-control" required>
+                <option value="">----Select----</option>
+                <option value="1">Standard</option>
+                <option value="2">Administrator</option>
+                <option value="3">Vendor</option>
+                <option value="4">Facilitator</option>
+            </select>
+            <span ng-show="form.inputUserrole.$dirty && form.inputUserrole.$error.required" class="help-block">Role is required</span>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error': form.inputCountrty.$dirty && form.inputCountrty.$error.required }">
+            <label for="inputCountrty">World *</label>
+            <select id="dropdownWorld" name="dropdownWorld" ng-disabled="vm.isEdit" ng-model="vm.register.AUWorldID" class="form-control" required>
+                <option value="">----Select----</option>
+                <option data-ng-repeat="t in vm.WorldList" value="{{t.Id}}">{{t.WorldName}}</option>
+            </select>
+            <span ng-show="form.inputCountrty.$dirty && form.inputCountrty.$error.required" class="help-block">Country is required</span>
+        </div>
+
+        <div class="form-group">
+            <label for="inputAddress">Profile Pic</label>
+            <input type="file" name="inputProfilePic" id="inputProfilePic" class="form-control" ng-model-instant
+                   onchange="angular.element(this).scope().previewFile()" />
+            <div>
+                <img class="thumb" id="imgProfile" src="{{vm.register.ProfilePic}}" style="margin:5px;width:200px;" />
+            </div>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error': form.dropdownArea.$dirty && form.dropdownArea.$error.required }">
+            <label for="dropdownArea">Business Area</label>
+            <select id="dropdownArea" name="dropdownArea" ng-model="vm.register.BizAreaID" class="form-control" required>
+                <option value="">----Select----</option>
+                <option data-ng-repeat="t in vm.Areas" value="{{t.BizAreaID}}">{{t.AreaName}}</option>
+            </select>
+            <span ng-show="form.dropdownArea.$dirty && form.dropdownArea.$error.required" class="help-block">Business Area is required</span>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error': form.dropdownBusinessType.$dirty && form.dropdownBusinessType.$error.required }">
+            <label for="dropdownArea">Business Office</label>
+            <select id="dropdownBusinessType" name="dropdownBusinessType" ng-model="vm.register.ASOfficeID" class="form-control" required>
+                <option value="">----Select----</option>
+                <option data-ng-repeat="t in vm.Offices" value="{{t.ASOfficeID}}">{{t.OfficeName}}</option>
+            </select>
+            <span ng-show="form.dropdownBusinessType.$dirty && form.dropdownBusinessType.$error.required" class="help-block">Business Office is required</span>
+        </div>
+
+        <div class="form-actions">
+            <button ng-click="vm.createUser()" ng-show="!vm.isEdit" type="button" ng-disabled="form.$invalid || myApp.dataLoading" class="btn btn-primary">Submit</button>
+            <button ng-click="vm.createUser()" ng-show="vm.isEdit" type="button" class="btn btn-primary">Save Changes</button>
+
+            <a href="#UserList" class="btn btn-default">< Go Back</a>
+        </div>
+        <div class="form-actions">
+            <span style="color:red">
+                {{vm.errorMessage}}
+            </span>
+            <span style="color:green">
+                {{vm.successMessage}}
+            </span>
+        </div>
+    </form>
+</div>

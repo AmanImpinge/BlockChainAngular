@@ -1,0 +1,44 @@
+﻿<div class="row form-group">
+    <div class="col-md-12">
+        <h2>
+            Events List
+            <a class="btn btn-primary" href="#CreateEvent">+Add New</a>
+        </h2>
+    </div>
+</div>
+<div class="row form-group" ng-init="vm.getEvents()">
+    <div class="col-md-12 table-responsive" style="overflow:auto;">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Event Name</th>
+                    <th>Description</th>
+                    <th>Create On</th>
+                    <th>Debug</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="x in vm.Events">
+                    <td>{{x.Id}}</td>
+                    <td>{{x.EventName}}</td>
+                    <td>{{x.Description}}</td>
+                    <td>{{x.FormattedCreateOn}}</td>
+                    <td>
+                        <input type="checkbox" readonly ng-show="x.DebugFlag==1" checked disabled="disabled" />
+                        <input type="checkbox" readonly ng-show="x.DebugFlag==0" disabled="disabled" />
+                    <td>
+                        <a href="#EditEvent/{{x.Id}}" title="Edit" class=""><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a class="" href="javascript:void(0);" title="Delete" ng-click="vm.deleteEvent(x)"><span class="glyphicon glyphicon-remove"></span></a>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot ng-show="vm.Events.length==0">
+                <tr>
+                    <td colspan="14" class="text-center">No record found</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

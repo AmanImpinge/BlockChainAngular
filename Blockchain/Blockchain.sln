@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blockchain.Web", "Blockchain.Web\Blockchain.Web.csproj", "{472F86A5-300E-418A-AF3C-5F32B4E654AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blockchain.Core", "Blockchain.Core\Blockchain.Core.csproj", "{3BCB963A-ADD5-46E3-A95C-72848178DC77}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository", "Repository", "{917554A4-10D2-4CCF-BF4F-B0B65BDB8D24}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Website", "Website", "{343D274E-519F-4F2A-80CE-91BCE5676134}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blockchain.Repository", "Blockchain.Repository\Blockchain.Repository.csproj", "{59AA21AB-2DE2-46CA-B5C0-1300FBF9A377}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{472F86A5-300E-418A-AF3C-5F32B4E654AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{472F86A5-300E-418A-AF3C-5F32B4E654AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{472F86A5-300E-418A-AF3C-5F32B4E654AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{472F86A5-300E-418A-AF3C-5F32B4E654AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BCB963A-ADD5-46E3-A95C-72848178DC77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BCB963A-ADD5-46E3-A95C-72848178DC77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BCB963A-ADD5-46E3-A95C-72848178DC77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BCB963A-ADD5-46E3-A95C-72848178DC77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59AA21AB-2DE2-46CA-B5C0-1300FBF9A377}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59AA21AB-2DE2-46CA-B5C0-1300FBF9A377}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59AA21AB-2DE2-46CA-B5C0-1300FBF9A377}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59AA21AB-2DE2-46CA-B5C0-1300FBF9A377}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{472F86A5-300E-418A-AF3C-5F32B4E654AE} = {343D274E-519F-4F2A-80CE-91BCE5676134}
+		{3BCB963A-ADD5-46E3-A95C-72848178DC77} = {917554A4-10D2-4CCF-BF4F-B0B65BDB8D24}
+		{59AA21AB-2DE2-46CA-B5C0-1300FBF9A377} = {917554A4-10D2-4CCF-BF4F-B0B65BDB8D24}
+	EndGlobalSection
+EndGlobal

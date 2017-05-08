@@ -1,0 +1,44 @@
+﻿<div class="col-md-6 col-md-offset-3" style="margin-top:50px;">
+    <h3>
+        <span ng-show="!vm.isEdit"> Create Event</span>
+        <span ng-show="vm.isEdit"> Edit Event</span>
+    </h3>
+
+    <form name="form" ng-submit="vm.saveEvent()" role="form">
+        <div class="form-group" ng-class="{ 'has-error': form.worldName.$dirty && form.worldName.$error.required }">
+            <label for="worldname">Enter Name</label>
+            <input type="text" name="eventName" id="eventName" class="form-control" ng-model="vm.event.EventName" required />
+            <span ng-show="form.worldName.$dirty && form.worldName.$error.required" class="help-block">Name is required</span>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" name="description" id="description" class="form-control" ng-model="vm.event.Description" />
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error': form.inputCountrty.$dirty && form.inputCountrty.$error.required }" ng-init="vm.worldList()">
+            <label for="dropdownWorld">World *</label>
+            <select id="dropdownWorld" name="dropdownWorld" ng-disabled="vm.isEdit" ng-model="vm.event.WorldId" class="form-control" required>
+                <option value="">----Select----</option>
+                <option data-ng-repeat="t in vm.Worlds" value="{{t.Id}}">{{t.WorldName}}</option>
+            </select>
+            <span ng-show="form.dropdownWorld.$dirty && form.dropdownWorld.$error.required" class="help-block">World is required</span>
+        </div>
+
+        <div class="form-group">
+            <label for="debugFlag">Debug</label>
+            <p>   <input type="checkbox" name="debugFlag" id="debugFlag" ng-model="vm.event.IsDebug" /></p>
+        </div>
+        <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid || myApp.dataLoading" class="btn btn-primary">
+                <span ng-show="!vm.isEdit"> Save</span>
+                <span ng-show="vm.isEdit"> Save Changes</span>
+            </button>
+            <a href="#/Events" class="btn btn-default">< Go Back</a>
+        </div>
+        <div class="form-actions">
+            <span style="color:red">
+                {{vm.errorMessage}}
+            </span>
+        </div>
+    </form>
+</div>

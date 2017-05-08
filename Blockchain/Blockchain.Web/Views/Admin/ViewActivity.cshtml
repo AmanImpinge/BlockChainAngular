@@ -1,0 +1,77 @@
+﻿<div class="col-md-6 col-md-offset-3">
+    <h2>
+        <span ng-show="!vm.isEdit"> Create Activity</span>
+        <span ng-show="vm.isEdit"> Edit Activity</span>
+    </h2>
+    <form name="form" role="form">
+        <div class="form-group">
+            <label for="inputName">Name</label>
+            <p>{{vm.activitylist.ActName}}</p>
+        </div>
+
+        <div class="form-group">
+            <label for="username">Description</label>
+            <p>{{vm.activitylist.ActDesc}}</p>
+        </div>
+        <div class="form-group">
+            <label for="inputImage">Image</label>
+            <p>  <img class="thumb" id="imgActivity" src="{{vm.activitylist.Image}}" style="margin:5px;width:200px;" /></p>
+        </div>
+        <div class="form-group">
+            <label>WorldName</label>
+            <p>{{vm.activitylist.WorldName}}</p>
+        </div>
+        <div class="form-group">
+            <label for="inputAmountEarned">Start Date Time</label>
+            <p>{{vm.activitylist.FormattedActStartTime}}</p>
+        </div>
+        <div class="form-group">
+            <label for="inputAmountEarned">End Date Time</label>
+            <p>{{vm.activitylist.FormattedActEndTime}}</p>
+        </div>
+
+        <div class="form-group">
+            <label for="inputAmountEarned">Amount earned for completion</label>
+            <p>{{vm.activitylist.ActCurrencyValue}}</p>
+        </div>
+
+        <div class="form-group">
+            <label for="inputAddress">Type</label><br />
+            <p ng-show="vm.activitylist.ActType==1">One Time</p>
+            <p ng-show="vm.activitylist.ActType==2">Recurring</p>
+        </div>
+
+        <div class="form-group">
+            <label for="inputMaximumPoints">Maximum number of points earned on recurring activities</label>
+            <p>{{vm.activitylist.ActMaxCount}}</p>
+        </div>
+
+        <div class="form-group">
+            <label for="inputActCurrencyDelta">Activity Currency Delta</label>
+            <p>{{vm.activitylist.ActCurrencyDelta}}</p>
+        </div>
+
+        <div class="form-group">
+            <label for="inputActExperienceDelta">Activity Experience Delta</label>
+            <p>{{vm.activitylist.ActExperienceDelta}}</p>
+        </div>
+
+        <div class="form-group">
+            <label>Debug</label>
+            <p>
+                <input type="checkbox" readonly ng-show="vm.activitylist.ActDebug==1" checked disabled="disabled" />
+                <input type="checkbox" readonly ng-show="vm.activitylist.ActDebug==0" disabled="disabled" />
+            </p>
+        </div>
+
+        <div class="form-actions">
+            <a href="#EditActivity/{{vm.activitylist.ActID}}" class="btn btn-primary">Edit</a>
+            <a href="#Activity" class="btn btn-default">< Go Back</a>
+
+
+            <button ng-click="vm.copyActivity()" type="button" ng-disabled="form.$invalid || myApp.dataLoading" class="btn btn-primary">Copy</button>
+            @*<a href="#copyActivity/{{vm.activitylist.ActID}}" class="btn btn-primary">Copy</a>*@
+        </div>
+    </form>
+</div>
+

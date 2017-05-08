@@ -1,0 +1,26 @@
+﻿
+
+
+<div class="row form-group">
+    <div class="col-md-12">
+        <h2>
+            Privacy Notes
+        </h2>
+    </div>
+    <div class="col-md-12 form-group" ng-init="vm.worldList()">
+        <label for="dropdownWorld">World</label>
+        <select id="dropdownWorld" name="dropdownWorld" ng-model="vm.worldId" class="form-control" ng-change="vm.loadWorldPrivacyNotes()" required>
+            <option value="">----Select----</option>
+            <option data-ng-repeat="t in vm.Worlds" value="{{t.Id}}">{{t.WorldName}}</option>
+        </select>
+    </div>
+</div>
+
+
+<div class="row form-group">
+    <div class="col-md-12 table-responsive">
+        <div ng-model="vm.PrivacyNote.Text" ng-bind-html="vm.PrivacyNote.Text"></div>
+    </div>
+    <a class="btn btn-primary" ng-show="vm.showAddPrivacy" href="#CreatePrivacyNote/{{vm.worldId}}">+Add New</a>
+    <a class="btn btn-primary" ng-show="vm.PrivacyNote.WorldId!='' && !vm.showAddPrivacy" href="#EditPrivacyNote/{{vm.PrivacyNote.Id}}">+Edit</a>
+</div>

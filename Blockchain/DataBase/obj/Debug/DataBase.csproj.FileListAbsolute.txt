@@ -1,0 +1,4 @@
+D:\Official\Projects\Rico\blockchain\Code\Blockchain\DataBase\bin\Debug\DataBase.dll
+D:\Official\Projects\Rico\blockchain\Code\Blockchain\DataBase\bin\Debug\DataBase.pdb
+D:\Official\Projects\Rico\blockchain\Code\Blockchain\DataBase\obj\Debug\DataBase.dll
+D:\Official\Projects\Rico\blockchain\Code\Blockchain\DataBase\obj\Debug\DataBase.pdb

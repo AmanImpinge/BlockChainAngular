@@ -1,0 +1,33 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <h3>Attendees List</h3>
+    </div>
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email Name</th>
+                    <th>IsActive</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="attendee in vm.attendees">
+                    <td>{{attendee.AUFirstName}}</td>
+                    <td>{{attendee.AULastName}}</td>
+                    <td>{{attendee.AUUserEmail}}</td>
+                    <td>{{attendee.AUAcctStatus}}</td>
+                    <td>
+                        @*<input type="button" class="btn btn-primary" value="Edit" />
+                            <input type="button" class="btn btn-danger" value="Delete" />*@
+                        <input ng-show="attendee.AUAcctStatus==0" type="button" class="btn btn-primary" ng-click="vm.changeUserStatus(attendee,1)" value="Activate" />
+                        <input ng-show="attendee.AUAcctStatus==1" type="button" class="btn btn-primary" ng-click="vm.changeUserStatus(attendee,0)" value="DeActivate" />
+                        <a class="btn btn-primary" href="#GenerateQR/{{attendee.AUID}}">Generate QR Code</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
